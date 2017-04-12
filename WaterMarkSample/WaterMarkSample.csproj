@@ -6,8 +6,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="ImageSharp" Version="1.0.0-alpha5-00054" />
-    <PackageReference Include="ImageSharp.Drawing" Version="1.0.0-alpha5-00048" />
+    <PackageReference Include="ImageSharp" Version="1.0.0-alpha5-00060" />
+    <PackageReference Include="ImageSharp.Drawing" Version="1.0.0-alpha5-00054" />
   </ItemGroup>
 
 </Project>
