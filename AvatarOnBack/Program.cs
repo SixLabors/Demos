@@ -76,10 +76,11 @@ namespace AvatarOnBack
         {
             var avatarPosition = new Rectangle(42, 125, 57, 57);
             var avatarPadding = 1;
-            // avatar background
+
+            // avatar background/border
             output.Fill(Rgba32.Gainsboro, new Rectangle(avatarPosition.X - avatarPadding, avatarPosition.Y - avatarPadding, avatarPosition.Width + (avatarPadding * 2), avatarPosition.Height + (avatarPadding * 2)));
 
-            using (var avatar = Image.Load(avatarUrl)) // 57x57
+            using (var avatar = Image.Load(avatarUrl)) 
             {
                 avatar.Resize(new ImageSharp.Processing.ResizeOptions
                 {
@@ -87,6 +88,7 @@ namespace AvatarOnBack
                     Size = avatarPosition.Size
                 });
 
+                // draw the avatar image
                 output.DrawImage(avatar, 1, avatarPosition.Size, avatarPosition.Location);
             }
         }
@@ -94,14 +96,12 @@ namespace AvatarOnBack
         private static void DrawStats(int rank, int level, int ep, Image<Rgba32> output)
         {
             Rgba32 statsColor = Rgba32.Gainsboro;
-            statsColor.A = 210;
+            statsColor.A = 210; // git it a little opacity
+
             // stats background
             output.Fill(statsColor, new Rectangle(56, 174, 345, 48));
-
-            // measure each string and split the margin between them??
+            
             var font = new Font(textFont, 20, FontStyle.Regular);
-
-            // rank
             output.DrawText($"Rank: {rank}", font, Rgba32.Gray, new System.Numerics.Vector2(108, 191), new ImageSharp.Drawing.TextGraphicsOptions
             {
                 VerticalAlignment = VerticalAlignment.Center,
@@ -122,10 +122,15 @@ namespace AvatarOnBack
         private static void DrawTitle(string icon, string name, Image<Rgba32> output)
         {
             var titleColor = Rgba32.DimGray;
-            titleColor.A = 220;
+            titleColor.A = 220; // just a touch of opacity
+
             // title background
-            output.Fill(Rgba32.DimGray, new Rectangle(100, 134, 300, 40));
+            output.Fill(Rgba32.DimGray, new Rectangle(100, 134, 300, 40)); //draw the background
+            
+            // add the icon
             output.DrawText(icon, new Font(iconFont, 22), Rgba32.White, new System.Numerics.Vector2(114, 142));
+
+            // add the name
             output.DrawText(name, new Font(titleFont, 32, FontStyle.Bold), Rgba32.White, new System.Numerics.Vector2(140, 128));
         }
     }
